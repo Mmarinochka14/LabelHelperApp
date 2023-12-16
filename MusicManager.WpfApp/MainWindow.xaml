@@ -1,0 +1,65 @@
+﻿<Window x:Class="MusicManager.WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicManager.WpfApp"
+        xmlns:vm="clr-namespace:MusicManager.WpfApp.ViewModels"
+        mc:Ignorable="d"
+        Title="Label Helper" Height="600" Width="820">
+    <Window.DataContext>
+        <vm:MainViewModel x:Name="ViewModel"></vm:MainViewModel>
+    </Window.DataContext>
+    <Grid Background="#66008E">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition MinHeight="200"></RowDefinition>
+            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,22,0,198" Grid.RowSpan="2">
+            <Label Margin="10" FontSize="12" FontWeight="Bold" Foreground="White">Альбомы</Label>
+            <TextBox Width="300" Margin="10 10 0 10" Text="{Binding Path=SearchTextAlbum, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Width="100" Margin="10" Command="{Binding Path=DeleteAlbumCommand}" Background="WhiteSmoke">Удалить</Button>
+            <Button Width="100" Margin="10" Command="{Binding Path=EditAlbumCommand}" Background="WhiteSmoke">Изменить</Button>
+            <Button Width="100" Margin="10" Command="{Binding Path=AddAlbumCommand}" Background="White">Добавить</Button>
+        </StackPanel>
+
+        <DataGrid 
+                  ItemsSource="{Binding Path=Albums}" 
+                  AutoGenerateColumns="False" 
+                  SelectionMode="Single"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  SelectedItem="{Binding Path=SelectedAlbum}" Margin="32,117,436,10" Grid.RowSpan="3" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Title}"/>
+                <DataGridTextColumn Width="*" Header="Промо" Binding="{Binding Path=Interpreter}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="29,42,0,133" Grid.Row="1">
+            <Label Margin="10" FontSize="12" FontWeight="Bold" Foreground="White">Треки</Label>
+            <TextBox Width="325" Margin="10 10 0 10" Text="{Binding Path=SearchTextTrack, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+            <Button Width="100" Margin="10" Command="{Binding Path=DeleteTrackCommand}" BorderBrush="Red" Background="WhiteSmoke">Удалить</Button>
+            <Button Width="100" Margin="10" Command="{Binding Path=EditTrackCommand}">Изменить</Button>
+            <Button Width="100" Margin="10" Command="{Binding Path=AddTrackCommand}">Добавить</Button>
+        </StackPanel>
+
+        <DataGrid  
+                  ItemsSource="{Binding Path=Tracks}" 
+                  AutoGenerateColumns="False" 
+                  SelectionMode="Single"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  SelectedItem="{Binding Path=SelectedTrack}" Margin="410,117,32,10" Grid.RowSpan="3" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Width="*" Header="Исполнитель" Binding="{Binding Path=Musician}" />
+                <DataGridTextColumn Header="Жанр" Binding="{Binding Path=Genre}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

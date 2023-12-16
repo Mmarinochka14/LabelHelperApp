@@ -1,0 +1,4 @@
+TrackId;Name;AlbumId;MediaTypeId;GenreId;Musician;Milliseconds;Bytes;UnitPrice
+1;Adrenaline;1;1;1;Icetag;636336;5255252;12,5
+2;Adrenaline;2;2;2;Icetag1;636436;5255242;13,5
+3;Adrenaline;3;3;3;Icetag2;616336;5255352;14,5
